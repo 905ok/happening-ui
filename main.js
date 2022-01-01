@@ -51,7 +51,9 @@ function Box(width, height) {
 
 
 function insertData(data) {
-    data.forEach(v => returnData[v.constructor.name+'s'].push(v));
+    Array.isArray(data) ?
+    data.forEach(v => returnData[v.constructor.name+'s'].push(v))
+    : returnData[v.constructor.name+'s'].push(data);
 }
 
 
