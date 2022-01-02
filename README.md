@@ -14,8 +14,24 @@ You can join the discussion in this [Discord server][mdc] and look for the chann
 If you have no idea what is this all about, it's from a game called [Manyland][ml].
 
 ## Appendix
-List of words that aren't allowed in automation types (regardless of lettercase):
+List of words that aren't allowed in automation types regardless of lettercase (probably still incomplete):
+- addeventlistener
+- alert
+- blob
+- eval
+- fetch
+- file
+- localstorage
+- postmessage
+- removeeventlistener
+- sessionstorage
+- setinterval
+- settimeout
+- url
+- use strict
+- usestrict
 - window
+- worker
 
 [mdc]: https://discord.gg/zgjnWrAbTJ
     "Manyland Development Committee Discord Server"
