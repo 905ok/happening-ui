@@ -55,8 +55,6 @@ let index = 0;
 let selectPointer = select[index];
 
 function update(my) {
-    selectPointer[0].rgba = NORMAL_COLOR;
-
     selectPointer[0].rgba = HIGHLIGHTED;
 
     select.forEach(v => insertData(v));
