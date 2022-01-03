@@ -51,15 +51,35 @@ const select = [
     new Option(4, 'fifth'),
 ];
 
-let index = 0;
+let index = 4;
 let selectPointer = select[index];
 
+let start = true;
+let myY = NaN;
+let lifted = false;
+let landed = true;
+
 function update(my) {
+    const me = my.sight.entities[0];
+    if (start) {
+        myY = me.y;
+        start = false;
+    }
+
+    if (me.y < myY) lifted = true;
+    if (me.y === myY) landed = true;
+
+    selectPointer[0].rgba = NORMAL_COLOR;
+
+    // TRY: move selectPointer assignment outside of code block
+    if (jumped()) {
+        index = index+1 == 5 ? 0 : index+1;
+        selectPointer = select[index];
+    }
+    
     selectPointer[0].rgba = HIGHLIGHTED;
 
     select.forEach(v => insertData(v));
-
-    if (jumped(my)) index = index+1 == 5 ? 0 : index+1;
 
     return resultData;
 }
@@ -72,6 +92,7 @@ function insertData(data) {
 }
 
 
-function jumped(my) {
-    return false;
+function jumped() {
+    if (lifted && landed) return lifted = landed = false, true;
+    else return false;
 }
