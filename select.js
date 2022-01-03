@@ -66,13 +66,16 @@ function update(my) {
         start = false;
     }
 
-    if (me.y < myY) lifted = true;
-    if (me.y === myY) landed = true;
+    if (me.y < myY)
+        if (landed) {
+            lifted = true;
+            landed = false;
+        }
 
     selectPointer[0].rgba = NORMAL_COLOR;
 
     // TRY: move selectPointer assignment outside of code block
-    if (jumped()) {
+    if (jumped(my)) {
         index = index+1 == 5 ? 0 : index+1;
         selectPointer = select[index];
     }
@@ -92,7 +95,8 @@ function insertData(data) {
 }
 
 
-function jumped() {
-    if (lifted && landed) return lifted = landed = false, true;
+function jumped(my) {
+    if (my.sight.entities[0].y === myY) landed = true;
+    if (lifted) return lifted = false, true;
     else return false;
 }
